@@ -3,9 +3,9 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import fs from "fs";
+import kindRouter from "./routes/kind.router";
 import morgan from "morgan";
 import path from "path";
-import quotesRouter from "./routes/quotes.router";
 
 // Loading enviorement variables
 dotenv.config();
@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 // Using the Router
-app.use("/api/v1", quotesRouter);
+app.use("/api/v1", kindRouter);
 
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(
