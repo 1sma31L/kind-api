@@ -1,11 +1,13 @@
 import express, { Request, Response } from "express";
 
+import authRouter from "./routes/auth.router";
 import cors from "cors";
 import dotenv from "dotenv";
 import fs from "fs";
 import kindRouter from "./routes/kind.router";
 import morgan from "morgan";
 import path from "path";
+import userRouter from "./routes/kind.router";
 
 // Loading enviorement variables
 dotenv.config();
@@ -19,7 +21,9 @@ app.use(cors());
 app.use(express.json());
 
 // Using the Router
-app.use("/api/v1", kindRouter);
+app.use("/api/v1/kind", kindRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
 
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(
